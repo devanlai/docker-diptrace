@@ -2,7 +2,7 @@ FROM tianon/wine:32
 
 MAINTAINER Devan Lai <devan.lai@gmail.com>
 
-RUN apt-get -y update && apt-get install -y xvfb
+RUN apt-get -y update && apt-get install -y xvfb procps
 
 COPY bin/* /tmp/bin/
 
