@@ -19,10 +19,12 @@ COPY exe/*.exe /tmp/exe/
 
 
 RUN xvfb-run -a wine \
-/tmp/exe/dipfree_en.exe /silent /hide; \
+/tmp/exe/dipfree_beta.exe /silent /hide; \
 /tmp/bin/waitfor.sh wineserver; \
-test -f "`winepath 'C:\\Program Files\\DipTrace\\Schematic.exe'`" && \
-test -f "`winepath 'C:\\Program Files\\DipTrace\\Pcb.exe'`";
+test -f "`winepath 'C:\\Program Files\\DipTrace Beta\\Schematic.exe'`" && \
+test -f "`winepath 'C:\\Program Files\\DipTrace Beta\\Pcb.exe'`" && \
+ln -s "`winepath 'C:\\Program Files\\DipTrace Beta'`" "`winepath 'C:\\Program Files\\DipTrace'`" && \
+test -f "`winepath 'C:\\Program Files\\DipTrace\\Schematic.exe'`"
 
 RUN rm -rf /tmp/exe/
 RUN rm -rf /tmp/bin/
