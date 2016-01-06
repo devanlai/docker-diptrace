@@ -1,8 +1,9 @@
-FROM tianon/wine:32
+FROM debian:jessie
 
 MAINTAINER Devan Lai <devan.lai@gmail.com>
 
-RUN apt-get -y update && apt-get install -y xvfb
+RUN dpkg --add-architecture i386
+RUN apt-get -y update && apt-get install -y wine:i386 xvfb procps
 
 COPY bin/* /tmp/bin/
 
