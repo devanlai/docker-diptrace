@@ -9,6 +9,7 @@ COPY bin/* /tmp/bin/
 ENV WINEDLLOVERRIDES="mscoree,mshtml="
 RUN if [ ! -d ${WINEPREFIX:-~/.wine/} ]; then \
 xvfb-run -a wine winecfg /D && \
+ps && \
 /tmp/bin/waitfor.sh wineserver; \
 fi
 
