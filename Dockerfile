@@ -18,12 +18,11 @@ RUN wine reg ADD "HKLM\\Software\\Microsoft\\Windows NT\\CurrentVersion" \
 
 COPY exe/*.exe /tmp/exe/
 
-
 RUN xvfb-run -a wine \
 /tmp/exe/dipfree_en.exe /silent /hide; \
 /tmp/bin/waitfor.sh wineserver; \
 test -f "`winepath 'C:\\Program Files\\DipTrace\\Schematic.exe'`" && \
 test -f "`winepath 'C:\\Program Files\\DipTrace\\Pcb.exe'`";
 
-RUN rm -rf /tmp/exe/
-RUN rm -rf /tmp/bin/
+# Ensure any dangling wine/x11 sockets get cleaned up
+RUN rm -rf /tmp/*
